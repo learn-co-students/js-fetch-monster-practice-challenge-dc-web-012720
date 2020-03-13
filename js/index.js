@@ -3,13 +3,24 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".create-btn").addEventListener("submit",createMonster)
     let notNumber = 1;
     let forwardBtn = document.querySelector("#forward");
+    let backBtn = document.querySelector("#back");
     forwardBtn.addEventListener("click", () => {
-        let div = document.querySelector("#monster-container")
-        removeChildren(div)
-        notNumber += 1
+        let div = document.querySelector("#monster-container");
+        removeChildren(div);
+        notNumber += 1;
         fetchMonsters(notNumber);
     }
-    )
+    );
+    backBtn.addEventListener("click", () => {
+        if (notNumber === 1) {
+            alert("You are in the first page!");
+        } else {
+            let div = document.querySelector("#monster-container");
+            removeChildren(div);
+            notNumber -= 1;
+            fetchMonsters(notNumber);
+        }
+    })
 });
 
 function fetchMonsters(pageNumber) {
@@ -52,12 +63,12 @@ function createMonster(event) {
     event.target.reset();
 }
 
-function movePageForward(pageNumber) {
-    console.log(pageNumber)
-    pageNumber += 1;
-    // debugger;
-    fetchMonsters(2);//pageNumber);
-}
+// function movePageForward(pageNumber) {
+//     console.log(pageNumber)
+//     pageNumber += 1;
+//     // debugger;
+//     fetchMonsters(2);//pageNumber);
+// }
 
 function removeChildren(div) {
     let child = div.lastElementChild;
